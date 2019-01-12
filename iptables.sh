@@ -1,18 +1,14 @@
 #!/bin/bash
+
 iptables -I INPUT -p udp --dport 111 -j REJECT
 iptables -I INPUT -p tcp --dport 111 -j REJECT
 iptables -I INPUT -p udp --dport 932 -j REJECT
 iptables -I INPUT -p tcp --dport 932 -j REJECT
 iptables -I INPUT -p udp --dport 3128 -j REJECT
 iptables -I INPUT -p tcp --dport 3128 -j REJECT
-iptables -A FORWARD -p tcp -d 5.9.100.11 --dport 587 -j ACCEPT
-iptables -t nat -A PREROUTING -p tcp -d 5.9.100.11 --dport 587 -j DNAT --to 192.168.1.4:587
+
 iptables -A FORWARD -p tcp -d 5.9.100.11 --dport 80 -j ACCEPT
 iptables -t nat -A PREROUTING -p tcp -d 5.9.100.11 --dport 80 -j DNAT --to 192.168.1.4:80
-iptables -A FORWARD -p tcp -d 5.9.100.11 --dport 3389 -j ACCEPT
-iptables -t nat -A PREROUTING -p tcp -d 5.9.100.11 --dport 3389 -j DNAT --to 192.168.1.4:22
-iptables -A FORWARD -p tcp -d 5.9.100.11 --dport 8080 -j ACCEPT
-iptables -t nat -A PREROUTING -p tcp -d 5.9.100.11 --dport 8080 -j DNAT --to 192.168.1.4:8080
 iptables -A FORWARD -p tcp -d 5.9.100.11 --dport 8663 -j ACCEPT
 iptables -t nat -A PREROUTING -p tcp -d 5.9.100.11 --dport 8663 -j DNAT --to 192.168.1.4:8663
 iptables -A FORWARD -p tcp -d 5.9.100.11 --dport 8443 -j ACCEPT
@@ -43,14 +39,8 @@ iptables -A FORWARD -p tcp -d 5.9.100.11 --dport 4190 -j ACCEPT
 iptables -t nat -A PREROUTING -p tcp -d 5.9.100.11 --dport 4190 -j DNAT --to 192.168.1.4:4190
 iptables -A FORWARD -p tcp -d 5.9.100.11 --dport 5555 -j ACCEPT
 iptables -t nat -A PREROUTING -p tcp -d 5.9.100.11 --dport 5555 -j DNAT --to 192.168.1.1:5555
-iptables -A FORWARD -p tcp -d 5.9.100.11 --dport 3390 -j ACCEPT
-iptables -t nat -A PREROUTING -p tcp -d 5.9.100.11 --dport 3390 -j DNAT --to 192.168.1.2:22
-iptables -A FORWARD -p tcp -d 5.9.100.11 --dport 222 -j ACCEPT
-iptables -t nat -A PREROUTING -p tcp -d 5.9.100.11 --dport 222 -j DNAT --to 192.168.1.2:22
 iptables -A FORWARD -p tcp -d 5.9.100.11 --dport 280 -j ACCEPT
 iptables -t nat -A PREROUTING -p tcp -d 5.9.100.11 --dport 280 -j DNAT --to 192.168.1.2:80
 iptables -A FORWARD -p tcp -d 5.9.100.11 --dport 28080 -j ACCEPT
 iptables -t nat -A PREROUTING -p tcp -d 5.9.100.11 --dport 28080 -j DNAT --to 192.168.1.2:8080
-iptables -A FORWARD -p tcp -d 5.9.100.11 --dport 2443 -j ACCEPT
-iptables -t nat -A PREROUTING -p tcp -d 5.9.100.11 --dport 2443 -j DNAT --to 192.168.1.2:443
 iptables -t nat -L -n

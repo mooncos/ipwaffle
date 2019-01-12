@@ -2,18 +2,16 @@
 
 import subprocess
 
-def read_rules():
-
-    p = subprocess.Popen("cat output", stdout=subprocess.PIPE, shell=True)
-    # p = subprocess.Popen("iptables -t nat -v -L PREROUTING -n --line-number", stdout=subprocess.PIPE, shell=True)
+def read_config():
+    p = subprocess.Popen("iptables -t nat -v -L PREROUTING -n --line-number", stdout=subprocess.PIPE, shell=True)
     (output, err) = p.communicate() 
     p_status = p.wait()
     output = output.split("\n")[2:-1]
     rules_tokenized = []
     
-    for i, line in enumerate(output):
-       id_no = int(i)
+    for line in output:
        entry = line.split()
+       id_no = entry[0]
        srcproto = entry[4]
        srcip = entry[9]
        dproto = entry[10]

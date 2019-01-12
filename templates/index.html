@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -11,13 +12,40 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
-<body>
-    <section id="list" class="section">
-        <h1 class="title has-text-centered has-text-white">ipwaffle</h1>
-        <h1 class="subtitle has-text-centered has-text-white">control</h1>
+<body id="list">
+    <section class="section">
+        <div class="container" style="margin-bottom:1em">
+            <nav class="level">
+                <div class="level-left">
+                    <div class="level-item">
+                        <span class="icon is-large">
+                            <img src="https://i.imgur.com/0b2BKgi.png" alt="">
+                        </span>
+                        <span>
+                            <h1 class="title has-text-white">&nbsp; ipwaffle</h1>
+                        </span>
+                    </div>
+                </div>
+                <div class="level-left">
+                    <div class="level-item">
+                        <a class="button is-danger" href="/logout"><span class="icon"><i class="fas fa-sign-out-alt"></i></span><span>Logout</span></a>
+                    </div>
+                </div>
+            </nav>
+        </div>
         <div class="container box">
             <div class="columns is-centered">
                 <div class="column">
+                    {% if error %}
+                    <div class="notification is-danger">
+                        {{ error }}
+                    </div>
+                    {% endif %}
+                    {% if success %}
+                    <div class="notification is-success">
+                        {{ success }}
+                    </div>
+                    {% endif %}
                     <table class="table">
                         <thead>
                             <tr>
@@ -35,61 +63,62 @@
 
                             {% for entry in store %}
                             <tr>
-                                    <th>{{ entry[6] }}</th>
-                                    <td>{{ entry[0] }}</td>
-                                    <td>{{ entry[1] }}</td>
-                                    <td>{{ entry[2] }}</td>
-                                    <td>{{ entry[3] }}</td>
-                                    <td>{{ entry[4] }}</td>
-                                    <td>{{ entry[5] }}</td>
-                                    <td><a class="delete"></a></td>
-                                </tr>
+                                <th>{{ entry[6] }}</th>
+                                <td>{{ entry[0] }}</td>
+                                <td>{{ entry[1] }}</td>
+                                <td>{{ entry[2] }}</td>
+                                <td>{{ entry[3] }}</td>
+                                <td>{{ entry[4] }}</td>
+                                <td>{{ entry[5] }}</td>
+                                <td><a href="/delete/{{ entry[6] }}" class="delete"></a></td>
+                            </tr>
                             {% endfor %}
 
                             <tr>
                                 <td>*</td>
-                                <td>
-                                    <div class="control">
-                                        <input class="input" type="text" placeholder="Source Proto">
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="control">
-                                        <input class="input" type="text" placeholder="Source IP">
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="control">
-                                        <input class="input" type="text" placeholder="Source Port">
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="control">
-                                        <input class="input" type="text" placeholder="Destination Proto">
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="control">
-                                        <input class="input" type="text" placeholder="Destination IP">
-                                    </div>
-                                </td>
+                                <form method="POST">
+                                    <td>
+                                        <div class="control">
+                                            <input name="srcproto" class="input" type="text" placeholder="Source Proto" required>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="control">
+                                            <input name="srcip" class="input" type="text" placeholder="Source IP" required>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="control">
+                                            <input name="srcport" class="input" type="text" placeholder="Source Port" required>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="control">
+                                            <input name="dproto" class="input" type="text" placeholder="Destination Proto" required>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="control">
+                                            <input name="dip" class="input" type="text" placeholder="Destination IP" required>
+                                        </div>
+                                    </td>
 
-                                <td>
-                                    <div class="control">
-                                        <input class="input" type="text" placeholder="Destination Port">
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="control">
-                                        <button class="button is-info">Add</button>
-                                    </div>
-                                </td>
+                                    <td>
+                                        <div class="control">
+                                            <input name="dport" class="input" type="text" placeholder="Destination Port"required>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="control">
+                                            <button class="button is-info" type="submit">Add</button>
+                                        </div>
+                                    </td>
+                                </form>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
-            <a class="button is-danger" href="/logout">Logout</a>
         </div>
     </section>
 </body>

@@ -1,4 +1,7 @@
+#! python2
+
 import subprocess
+
 p = subprocess.Popen("iptables -t nat -v -L PREROUTING -n --line-number", stdout=subprocess.PIPE, shell=True)
 (output, err) = p.communicate() 
 p_status = p.wait()
@@ -10,7 +13,3 @@ while i < lines:
 	(output, err) = p.communicate()
 	p_status = p.wait()
 	i = i + 1
-p = subprocess.Popen("iptables -t nat -v -L PREROUTING -n --line-number", stdout=subprocess.PIPE, shell=True)
-(output, err) = p.communicate()
-p_status = p.wait()
-print output
