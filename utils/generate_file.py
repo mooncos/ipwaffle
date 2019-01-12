@@ -27,7 +27,7 @@ def bashfile(routes, rejects=[111, 932, 3128]):
         
         # Write port mappings
         for row in routes:
-            f.write(("iptables -A FORWARD -p {srcproto} -d {srcip} --dport {srcport} -j ACCEPT\r\niptables -t nat -A PREROUTING -p {dproto} -d {srcip} --dport {srcport} -j DNAT --to {dip}:{dport}\n").format(srcproto=row[0], srcip=row[1], 
+            f.write(("iptables -A FORWARD -p {srcproto} -d {srcip} --dport {srcport} -j ACCEPT \niptables -t nat -A PREROUTING -p {dproto} -d {srcip} --dport {srcport} -j DNAT --to {dip}:{dport}\n").format(srcproto=row[0], srcip=row[1], 
                 srcport=row[2], dproto=row[3], dip=row[4], dport=row[5]))
 
         # Append last line
