@@ -1,0 +1,17 @@
+
+body {
+    font-family: "Montserrat", "Sans Serif";
+}
+
+.hero {
+    background: url("https://source.unsplash.com/user/nasa/1600x900");
+    background-size: cover;
+    background-position: center;
+    background-color: rgb(114, 114, 114);
+}
+
+#list {
+    background: #667db6;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #667db6, #0082c8, #0082c8, #667db6);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #667db6, #0082c8, #0082c8, #667db6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
